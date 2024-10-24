@@ -67,6 +67,8 @@ select Nombre,Edad from Estudiante
 
 select * from Estudiante where Carrera in ('Informatica')
 
+select * from Estudiante where Nombre like 'M%'
+
 select * from Estudiante where Edad>15
 
 select * from Autor where Nacionalidad in ('Colombia')
@@ -75,4 +77,4 @@ select * from Libro where Area not in ('Informatica')
 
 select * from Estudiante where Edad between 20 and 30
 
-select * from Estudiante where Id_Lector in ('111')
+select * from Estudiante where Id_Lector like '%11%'
