@@ -128,3 +128,36 @@ select * from Cuentas_Bancarias
 select * from Transacciones
 select * from Sucursales
 select * from Empleados
+
+SELECT top 5 * FROM Clientes 
+SELECT count (*) as 'CantidadSucursalesBogota' FROM Sucursales WHERE Ciudad = 'Bogotá'
+SELECT sum (Monto) as 'SumatoriaMonto' FROM Transacciones WHERE Cuenta_Id=2
+SELECT avg (Saldo) as 'PromedioCuentaBancaria' FROM Cuentas_Bancarias 
+SELECt distinct (Fecha_Apertura) FROM Cuentas_Bancarias
+SELECT min (Saldo) as 'SaldoMinimo' FROM Cuentas_Bancarias
+SELECT max (Saldo) as 'SaldoMaximo' FROM Cuentas_Bancarias
+
+--1.Obtener una lista de las ciudades distintas donde hay sucursales
+SELECT distinct (Ciudad) FROM Sucursales
+--2.Contar la cantidad de clientes en estado 'Activo'
+SELECT count (*) FROM Clientes WHERE Estado_Cliente = 'Activo'
+--3.Obtener el monto maximo de prestamo otorgado
+SELECT max (Monto_Prestamo) FROM Prestamos
+--4.Contar la cantidad de empleados cuyo correo electronico termina en '@gmail.com'
+SELECT count (*) FROM Empleados WHERE Email like '%@example.com'
+--5.Encontrar el monto maximo y minimo de prestamo aprobado en el año 2023
+SELECT min (Monto_Prestamo),max (Monto_Prestamo) FROM Prestamos where Fecha_Aprobacion between '2022-01-01' and '2022-12-31'
+--6.Contar la cantidad de tipos de transacciones distintas que existen
+SELECT count  (distinct Tipo_Transaccion ) FROM Transacciones
+--7.Encontrar el salario mas alto de los empleados en una sucursal Medellin
+SELECT MAX(Salario) AS SalarioMaximo FROM Empleados WHERE Sucursal IN (1, 2, 3)
+--8.Contar el monto de clientes cuya cuenta no esta en estado 'activo'
+SELECT count (*) FROM Clientes WHERE Estado_Cliente not in ('Activo')
+--9.Encontrar el monto minimo de prestamo aprobado
+SELECT min (Monto_Prestamo) FROM Prestamos WHERE Estado_Prestamo = 'Aprobado'
+--10.Contar el numero total de clientes
+SELECT count (*) FROM Clientes
+--11.Sumar el saldo de las cuentas bancarias que pertenecen a los clientes con id 235562,90068 y 797653
+SELECT sum (Saldo) FROM Cuentas_Bancarias WHERE Cliente_Id in (1,2,3)
+--12.Calcular el promedio de monto de prestamos entre 500.000 y 2000000
+SELECT avg (Monto_Prestamo) FROM Prestamos WHERE Monto_Prestamo BETWEEN 5000 AND 15000
