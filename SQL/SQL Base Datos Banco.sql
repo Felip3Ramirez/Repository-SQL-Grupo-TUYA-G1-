@@ -161,3 +161,65 @@ SELECT count (*) FROM Clientes
 SELECT sum (Saldo) FROM Cuentas_Bancarias WHERE Cliente_Id in (1,2,3)
 --12.Calcular el promedio de monto de prestamos entre 500.000 y 2000000
 SELECT avg (Monto_Prestamo) FROM Prestamos WHERE Monto_Prestamo BETWEEN 5000 AND 15000
+
+--Mostrar cuantos trabajadores hay en cargo
+SELECT Cargo, COUNT(*) as 'Cantidad de empleados por cargo' FROM Empleados GROUP BY Cargo
+
+--Motrar el total de la tabla transacciones segun el TipoTransaccion
+SELECT Tipo_Transaccion, sum(Monto) as 'Total de tipos de transaccion' FROM Transacciones GROUP BY Tipo_Transaccion
+
+--Mostrar cuantas sucursales hay en cada ciudad
+SELECT Ciudad ,COUNT(*) as 'Numero de sucursales por ciudad' FROM Sucursales GROUP BY Ciudad
+
+--Mostrar de la tabla prestamos el total del Montopretamo segun el estado
+SELECT Estado_Prestamo ,SUM(Monto_Prestamo) as 'Sumatoria de prestamos' FROM Prestamos GROUP BY Estado_Prestamo
+
+--Motrar el total del monto la tabla transacciones segun el TipoTransaccion pero mostrar aquellos que superen 2 millones
+SELECT Tipo_Transaccion ,SUM(Monto) FROM Transacciones GROUP BY Tipo_Transaccion HAVING SUM(Monto) > 2000000
+
+--Mostrar la informacion de la tabla CLiente ordenando los apellidos de manera ascendente
+SELECT * FROM Clientes ORDER BY Apellido DESC
+SELECT * FROM Clientes ORDER BY Apellido ASC
+
+--1.Listar los tipos de transaccion de la tabla transacciones que superan los 10000 en monto
+SELECT Tipo_Transaccion, SUM (Monto) from Transacciones Group by Tipo_Transaccion having sum(Monto)>400
+
+--2.Mostrar el numero de prestamos aprobados por cliente
+SELECT count(*) from Prestamos where  Estado_Prestamo in  ('Aprobado')
+SELECT Cliente_Id,COUNT(*) from Prestamos where Estado_Prestamo = 'Aprobado' group by Cliente_Id
+
+--3.Mostar los clientes con mas de dos perestamos aprobados
+SELECT Cliente_Id,COUNT(*) from Prestamos where Estado_Prestamo = 'Aprobado' group by Cliente_Id having count(*) >=1
+
+--4.Obtener el total de transacciones por tipo entre las fechas '2023-01-01' y '2023-12-31' solo para los tipos 'Deposito' y 'Retiro'
+SELECT Tipo_Transaccion, COUNT(*) AS Total_Transacciones FROM  Transacciones WHERE  Fecha_Transaccion BETWEEN '2023-01-01' AND '2023-12-31'
+AND Tipo_Transaccion IN ('Depósito', 'Retiro')
+GROUP BY  Tipo_Transaccion;
+
+--5.Obtener el numero de transacciones por tipo de transaccion que contienen la palabra 'pago' en la descripcion y cuyo monto total sea mayor a 5000
+SELECT Tipo_Transaccion, SUM (Monto) From Transacciones where  Descripcion like '%Depósito%' group by Tipo_Transaccion having SUM(Monto) >300
+select * from Transacciones
+
+--1.	Mostrar el total de las transacciones realizadas en el mes de enero de 2024
+SELECT * from Transacciones where Fecha_Transaccion between '2022-01-01' and '2022-12-31'
+
+--2.	Mostrar todas las transacciones menos las que sean tipo transferencia.
+SELECT * FROM Transacciones where Tipo_Transaccion not in ('Transferencia')
+
+--3.	Mostrar el monto total de los préstamos en el estado "Rechazado".
+select * from Prestamos
+SELECT  SUM(Monto_Prestamo) FROM Prestamos where Estado_Prestamo ='Aprobado' 
+
+--4.	Mostrar el número total de préstamos por cada cliente con estado "Pendiente"
+SELECT Prestamo_Id, count(*) From Prestamos where Estado_Prestamo ='Aprobado' group by Prestamo_Id
+
+--5.	Mostrar el monto total de transacciones por tipo para aquellos que tengan más de 5 transacciones
+SELECT  Tipo_Transaccion, SUM(Monto) FROM Transacciones GROUP BY Tipo_Transaccion HAVING  COUNT(*) > 5
+
+--6.	Obtener la cantidad de sucursales en cada ciudad y ordenar los resultados por la cantidad de sucursales (de mayor a menor).
+
+
+
+
+
+
