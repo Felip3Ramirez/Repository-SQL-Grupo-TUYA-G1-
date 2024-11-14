@@ -220,9 +220,63 @@ SELECT Prestamo_Id, count(*) From Prestamos where Estado_Prestamo ='Aprobado' gr
 SELECT  Tipo_Transaccion, SUM(Monto) FROM Transacciones GROUP BY Tipo_Transaccion HAVING  COUNT(*) > 5
 
 --6.	Obtener la cantidad de sucursales en cada ciudad y ordenar los resultados por la cantidad de sucursales (de mayor a menor).
+SELECT * FROM Sucursales
+SELECT Ciudad, count (*) as 'CantidadSucursal' from Sucursales group by Ciudad order by CantidadSucursal desc
 
+--7.	Mostrar los préstamos pendientes con un monto mayor a 500,000.
+select * from Prestamos 
+SELECT * from Prestamos where Estado_Prestamo = 'Aprobado' and Monto_Prestamo > 5000
 
+--8.	Obtener el promedio de los montos de las transacciones para cada tipo de transacción.
+select * from Transacciones
+select Tipo_Transaccion, avg(Monto) as 'PromedioMonto'from Transacciones group by Tipo_Transaccion
 
+--9.	Mostrar el número de clientes cuyo estado es 'Activo' y cuyo apellido comienza con la letra 'G'
+select * from Clientes 
+select count(*) from Clientes where Estado_Cliente ='Activo' and Apellido like 'G%'
 
+--10.	Mostrar las transacciones realizadas en el mes de marzo de 2024, solo de tipo "Retiro"
+select * from Transacciones
+select * from Transacciones where Tipo_Transaccion ='Retiro ' and  Fecha_Transaccion between '2022-01-01' and '2022-01-30' 
+
+--11.	Encontrar la fecha más antigua de ingreso entre los empleados
+select * from Empleados
+select min (Fecha_Ingreso) as 'FechaAntigua' from Empleados
+
+--12.	Mostrar la cantidad total de préstamos y el monto promedio agrupado por estado del préstamo.
+select * from Prestamos
+select Estado_Prestamo,COUNT(*) as 'TotalPrestamos', avg(Monto_Prestamo) as 'Promedio' from Prestamos group by Estado_Prestamo
+
+--13.	Ordenar los clientes activos por fecha de nacimiento de manera descendente
+select * from Clientes
+select Fecha_Nacimiento from Clientes where Estado_Cliente='Activo' group by Fecha_Nacimiento order by Fecha_Nacimiento desc
+
+--14.	Mostrar la suma de los salarios de empleados cuyos nombres no son ('María Camila' y 'Juliana')
+Select * from Empleados
+Select SUM(Salario) from Empleados where Nombre not in ('Maria','Camila','Ana')
+
+--15.	Calcular el saldo promedio de las cuentas bancarias activas con saldo entre 500,000 y 2,000,000
+Select * from Cuentas_Bancarias
+Select AVG(Saldo) from Cuentas_Bancarias where Estado_Cuenta = 'Activa' and Saldo between 500 and 2000
+
+--16.	Contar el número de clientes en la base de datos que tienen el estado 'Activo' o 'Inactivo'
+Select * from Clientes
+Select COUNT(*) from Clientes where Estado_Cliente in ('Activo','Inactivo')
+
+--17.	Calcular el monto total de préstamos aprobados con plazo mayor a 24 meses
+select * from Prestamos
+select SUM(Monto_Prestamo) from Prestamos where Estado_Prestamo='Aprobado' and Plazo_Meses > 15
+
+--18.	Obtener la cantidad de cuentas bancarias por tipo de cuenta, ordenadas por saldo total descendente
+select * from Cuentas_Bancarias
+select Tipo_Cuenta,COUNT(*),SUM(Saldo) AS 'SaldoTotal' from Cuentas_Bancarias group by Tipo_Cuenta order by SaldoTotal desc
+
+--19.	Obtener el salario promedio de los empleados en cargos de 'Cajero' y 'Asesor'
+select * from Empleados 
+select AVG(Salario) from Empleados where Cargo IN ('Cajero','Asistente')
+
+--20.Listar los préstamos aprobados que tengan una tasa de interés menor a 6% y ordenar por monto de préstamo en forma ascendente
+select * from Prestamos
+select * from Prestamos where Estado_Prestamo='Aprobado' and Tasa_Interes < 0.06 order by Monto_Prestamo asc
 
 
