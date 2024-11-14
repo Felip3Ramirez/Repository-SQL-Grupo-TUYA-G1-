@@ -67,11 +67,11 @@ Salario float not null)
 
 INSERT INTO Clientes (Cliente_Id, Nombre, Apellido, Email, Telefono, Fecha_Nacimiento, Estado_Cliente)
 VALUES
-(1, 'Juan', 'Pérez', 'juan.perez@example.com', 1234567890, '1990-01-01', 'Activo'),
-(2, 'María', 'González', 'maria.gonzalez@example.com', 9876543210, '1992-02-02', 'Activo'),
-(3, 'Pedro', 'Rodríguez', 'pedro.rodriguez@example.com', 5551234567, '1995-03-03', 'Activo'),
-(4, 'Ana', 'Martínez', 'ana.martinez@example.com', 8765432109, '1998-04-04', 'Activo'),
-(5, 'Luis', 'Hernández', 'luis.hernandez@example.com', 3456789012, '2000-05-05', 'Activo')
+(1, 'Juan', 'Perez', 'juan.perez@example.com', 1234567890, '1990-01-01', 'Activo'),
+(2, 'Maria', 'Gonzolez', 'maria.gonzalez@example.com', 9876543210, '1992-02-02', 'Activo'),
+(3, 'Pedro', 'Rodriguez', 'pedro.rodriguez@example.com', 5551234567, '1995-03-03', 'Activo'),
+(4, 'Ana', 'Martinez', 'ana.martinez@example.com', 8765432109, '1998-04-04', 'Activo'),
+(5, 'Luis', 'Hernandez', 'luis.hernandez@example.com', 3456789012, '2000-05-05', 'Activo')
 
 INSERT INTO Prestamos (Prestamo_Id, Cliente_Id, Monto_Prestamo, Tasa_Interes, Fecha_Aprobacion, Plazo_Meses, Estado_Prestamo)
 VALUES
@@ -99,27 +99,27 @@ VALUES
 
 INSERT INTO Transacciones (Cuenta_Id, Monto, Tipo_Transaccion, Fecha_Transaccion, Descripcion)
 VALUES
-(1, 100.00, 'Depósito', '2022-01-01', 'Depósito inicial'),
+(1, 100.00, 'Deposito', '2022-01-01', 'Deposito inicial'),
 (2, 200.00, 'Retiro', '2022-01-05', 'Retiro en efectivo'),
 (3, 300.00, 'Transferencia', '2022-01-10', 'Transferencia a otra cuenta'),
-(4, 400.00, 'Depósito', '2022-01-15', 'Depósito de salario'),
+(4, 400.00, 'Deposito', '2022-01-15', 'Deposito de salario'),
 (5, 500.00, 'Retiro', '2022-01-20', 'Retiro en efectivo')
 
 INSERT INTO Sucursales (Sucursal_Id, Nombre_Sucursal, Direccion, Ciudad, Estado, Telefono)
 VALUES
-(1, 'Sucursal Central', 'Calle 1 # 2-3', 'Bogotá', 'Cundinamarca', 1234567890),
-(2, 'Sucursal Norte', 'Calle 10 # 5-6', 'Bogotá', 'Cundinamarca', 9876543210),
-(3, 'Sucursal Sur', 'Calle 20 # 8-9', 'Bogotá', 'Cundinamarca', 5551234567),
+(1, 'Sucursal Central', 'Calle 1 # 2-3', 'Bogota', 'Cundinamarca', 1234567890),
+(2, 'Sucursal Norte', 'Calle 10 # 5-6', 'Bogota', 'Cundinamarca', 9876543210),
+(3, 'Sucursal Sur', 'Calle 20 # 8-9', 'Bogota', 'Cundinamarca', 5551234567),
 (4, 'Sucursal Occidente', 'Calle 30 # 11-12', 'Cali', 'Valle del Cauca', 7778889990),
 (5, 'Sucursal Oriente', 'Calle 40 # 13-14', 'Bucaramanga', 'Santander', 3334445555)
 
 INSERT INTO Empleados (Empleado_Id, Sucursal, Nombre, Apellido, Cargo, Email, Fecha_Ingreso, Salario)
 VALUES
-(1, 1, 'Juan', 'Pérez', 'Gerente', 'juan.perez@example.com', '2018-01-01', 5000000.00),
-(2, 1, 'María', 'González', 'Asistente', 'maria.gonzalez@example.com', '2019-02-02', 3000000.00),
-(3, 2, 'Pedro', 'Rodríguez', 'Cajero', 'pedro.rodriguez@example.com', '2020-03-03', 2500000.00),
-(4, 3, 'Ana', 'López', 'Gerente', 'ana.lopez@example.com', '2019-04-04', 4500000.00),
-(5, 4, 'Carlos', 'Martínez', 'Asistente', 'carlos.martinez@example.com', '2020-05-05', 3500000.00)
+(1, 1, 'Juan', 'Perez', 'Gerente', 'juan.perez@example.com', '2018-01-01', 5000000.00),
+(2, 1, 'Maria', 'Gonzalez', 'Asistente', 'maria.gonzalez@example.com', '2019-02-02', 3000000.00),
+(3, 2, 'Pedro', 'Rodriguez', 'Cajero', 'pedro.rodriguez@example.com', '2020-03-03', 2500000.00),
+(4, 3, 'Ana', 'Lopez', 'Gerente', 'ana.lopez@example.com', '2019-04-04', 4500000.00),
+(5, 4, 'Carlos', 'Martinez', 'Asistente', 'carlos.martinez@example.com', '2020-05-05', 3500000.00)
 
 select * from Clientes
 select * from Prestamos
@@ -129,8 +129,8 @@ select * from Transacciones
 select * from Sucursales
 select * from Empleados
 
-SELECT top 5 * FROM Clientes 
-SELECT count (*) as 'CantidadSucursalesBogota' FROM Sucursales WHERE Ciudad = 'Bogotá'
+SELECT top 4 * FROM Clientes 
+SELECT count (*) as 'CantidadSucursalesBogota' FROM Sucursales WHERE Ciudad = 'Bogota'
 SELECT sum (Monto) as 'SumatoriaMonto' FROM Transacciones WHERE Cuenta_Id=2
 SELECT avg (Saldo) as 'PromedioCuentaBancaria' FROM Cuentas_Bancarias 
 SELECt distinct (Fecha_Apertura) FROM Cuentas_Bancarias
@@ -140,17 +140,19 @@ SELECT max (Saldo) as 'SaldoMaximo' FROM Cuentas_Bancarias
 --1.Obtener una lista de las ciudades distintas donde hay sucursales
 SELECT distinct (Ciudad) FROM Sucursales
 --2.Contar la cantidad de clientes en estado 'Activo'
-SELECT count (*) FROM Clientes WHERE Estado_Cliente = 'Activo'
+SELECT count (*) as 'CuentasActivas' FROM Clientes WHERE Estado_Cliente = 'Activo'
 --3.Obtener el monto maximo de prestamo otorgado
 SELECT max (Monto_Prestamo) FROM Prestamos
 --4.Contar la cantidad de empleados cuyo correo electronico termina en '@gmail.com'
 SELECT count (*) FROM Empleados WHERE Email like '%@example.com'
---5.Encontrar el monto maximo y minimo de prestamo aprobado en el año 2023
-SELECT min (Monto_Prestamo),max (Monto_Prestamo) FROM Prestamos where Fecha_Aprobacion between '2022-01-01' and '2022-12-31'
+--5.Encontrar el monto maximo y minimo de prestamo aprobado en el aÃ±o 2023
+SELECT min (Monto_Prestamo) as 'MonroMinimo',max (Monto_Prestamo) as 'MontoMaximo' FROM Prestamos where Fecha_Aprobacion between '2022-01-01' and '2022-12-31'
 --6.Contar la cantidad de tipos de transacciones distintas que existen
 SELECT count  (distinct Tipo_Transaccion ) FROM Transacciones
+select * from Transacciones
 --7.Encontrar el salario mas alto de los empleados en una sucursal Medellin
 SELECT MAX(Salario) AS SalarioMaximo FROM Empleados WHERE Sucursal IN (1, 2, 3)
+select * from Empleados
 --8.Contar el monto de clientes cuya cuenta no esta en estado 'activo'
 SELECT count (*) FROM Clientes WHERE Estado_Cliente not in ('Activo')
 --9.Encontrar el monto minimo de prestamo aprobado
@@ -189,15 +191,16 @@ SELECT count(*) from Prestamos where  Estado_Prestamo in  ('Aprobado')
 SELECT Cliente_Id,COUNT(*) from Prestamos where Estado_Prestamo = 'Aprobado' group by Cliente_Id
 
 --3.Mostar los clientes con mas de dos perestamos aprobados
-SELECT Cliente_Id,COUNT(*) from Prestamos where Estado_Prestamo = 'Aprobado' group by Cliente_Id having count(*) >=1
+SELECT Cliente_Id,COUNT(*) from Prestamos where Estado_Prestamo = 'Aprobado' group by Cliente_Id having count(*) >1
 
 --4.Obtener el total de transacciones por tipo entre las fechas '2023-01-01' y '2023-12-31' solo para los tipos 'Deposito' y 'Retiro'
-SELECT Tipo_Transaccion, COUNT(*) AS Total_Transacciones FROM  Transacciones WHERE  Fecha_Transaccion BETWEEN '2023-01-01' AND '2023-12-31'
-AND Tipo_Transaccion IN ('Depósito', 'Retiro')
+SELECT Tipo_Transaccion, COUNT(*) AS Total_Transacciones FROM  Transacciones WHERE  Fecha_Transaccion BETWEEN '2022-01-01' AND '2022-12-31'
+AND Tipo_Transaccion IN ('Deposito', 'Retiro') 
 GROUP BY  Tipo_Transaccion;
+select * from Transacciones
 
 --5.Obtener el numero de transacciones por tipo de transaccion que contienen la palabra 'pago' en la descripcion y cuyo monto total sea mayor a 5000
-SELECT Tipo_Transaccion, SUM (Monto) From Transacciones where  Descripcion like '%Depósito%' group by Tipo_Transaccion having SUM(Monto) >300
+SELECT Tipo_Transaccion, SUM (Monto) From Transacciones where  Descripcion like '%Deposito%' group by Tipo_Transaccion having SUM(Monto) >300
 select * from Transacciones
 
 --1.	Mostrar el total de las transacciones realizadas en el mes de enero de 2024
@@ -206,14 +209,14 @@ SELECT * from Transacciones where Fecha_Transaccion between '2022-01-01' and '20
 --2.	Mostrar todas las transacciones menos las que sean tipo transferencia.
 SELECT * FROM Transacciones where Tipo_Transaccion not in ('Transferencia')
 
---3.	Mostrar el monto total de los préstamos en el estado "Rechazado".
+--3.	Mostrar el monto total de los prestamos en el estado "Rechazado".
 select * from Prestamos
 SELECT  SUM(Monto_Prestamo) FROM Prestamos where Estado_Prestamo ='Aprobado' 
 
---4.	Mostrar el número total de préstamos por cada cliente con estado "Pendiente"
+--4.	Mostrar el numero total de prestamos por cada cliente con estado "Pendiente"
 SELECT Prestamo_Id, count(*) From Prestamos where Estado_Prestamo ='Aprobado' group by Prestamo_Id
 
---5.	Mostrar el monto total de transacciones por tipo para aquellos que tengan más de 5 transacciones
+--5.	Mostrar el monto total de transacciones por tipo para aquellos que tengan mas de 5 transacciones
 SELECT  Tipo_Transaccion, SUM(Monto) FROM Transacciones GROUP BY Tipo_Transaccion HAVING  COUNT(*) > 5
 
 --6.	Obtener la cantidad de sucursales en cada ciudad y ordenar los resultados por la cantidad de sucursales (de mayor a menor).
