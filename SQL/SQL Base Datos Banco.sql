@@ -280,3 +280,53 @@ select * from Prestamos
 select * from Prestamos where Estado_Prestamo='Aprobado' and Tasa_Interes < 0.06 order by Monto_Prestamo asc
 
 
+--join
+
+select * from Empleados inner join Sucursales on Empleados.Sucursal = Sucursales.Sucursal_Id
+
+select * from Clientes inner join Cuentas_Bancarias on Clientes.Cliente_Id = Cuentas_Bancarias.Cliente_Id
+
+select * from Transacciones right join Cuentas_Bancarias on Transacciones.Cuenta_Id = Cuentas_Bancarias.Numero_Cuenta
+
+Select * from Cuentas_Bancarias left join Transacciones on Cuentas_Bancarias.Numero_Cuenta =  Transacciones.Cuenta_Id
+
+select * from Prestamos inner join Clientes on Prestamos.Cliente_Id = Clientes.Cliente_Id where Estado_Prestamo='Aprobado' and Estado_Cliente='Activo'
+
+select * from Clientes left join Prestamos on Clientes.Cliente_Id = Prestamos.Cliente_Id
+
+select * from Clientes
+select * from Prestamos
+select * from Pagos_Prestamo
+select * from Cuentas_Bancarias
+select * from Transacciones
+select * from Sucursales
+select * from Empleados
+
+--1.	Mostrar todas las transacciones realizadas por clientes con ID = 35564, 235562, 1823452
+select * from Transacciones join Cuentas_Bancarias on Transacciones.Cuenta_Id=Cuentas_Bancarias.Numero_Cuenta join Clientes on Cuentas_Bancarias.Cliente_Id =Clientes.Cliente_Id where Cliente_Id in (1,3,5)
+
+--2.	Mostrar las transacciones realizadas por clientes con un estado activo, y en las que el monto sea 30.000, 100.000, 200.000
+select * from Transacciones join Cuentas_Bancarias on Transacciones.Cuenta_Id=Cuentas_Bancarias.Numero_Cuenta join Clientes on Cuentas_Bancarias.Cliente_Id =Clientes.Cliente_Id where Estado_Cliente='Activo' and
+Monto in (30,10,20)
+
+--3.	Obtener las transacciones con una descripción que contenga la palabra "Retiro", junto con la información del cliente que realizó la transacción.
+select * from Cuentas_Bancarias
+--4.	Mostrar todos los clientes, junto con las transacciones solamente de aquellos que no tienen saldo en su cuenta.
+--5.	Mostrar las transacciones realizadas por clientes con un saldo mayor a 500,000 y cuyo estado es "Activo".
+select * from 
+--6.	Obtener los depósitos realizados en el mes de octubre de 2023, junto con el nombre del cliente y el saldo de la cuenta
+
+--7.	Mostrar la suma total de los depósitos realizados por clientes en cuentas activas.
+--8.	Mostrar los empleados que están desde el año 2020 hasta la actualidad y pertenecen a la sucursal 1122
+--9.	Mostrar las cuentas de tipo "Ahorros" que realizaron transacciones en octubre de 2023.
+--10.	Listar los préstamos con monto superior a 5,000,000 para clientes activos.
+select * from Prestamos join Clientes on Prestamos.Cliente_Id = Clientes.Cliente_Id where Monto_Prestamo>5000000 and Estado_Cliente='Activo'
+--11.	Mostrar el saldo promedio de las cuentas corrientes de clientes con estado "Activo"
+select AVG(Cuentas_Bancarias.Saldo) as 'Promedio' from Clientes join Cuentas_Bancarias on Clientes.Cliente_Id = Cuentas_Bancarias.Cliente_Id where Estado_Cliente='Activo' and Tipo_Cuenta='Corriente'
+
+select Nombre,Saldo from Transacciones join Cuentas_Bancarias on Transacciones.Cuenta_Id=Cuentas_Bancarias.Numero_Cuenta join Clientes on Cuentas_Bancarias.Cliente_Id =Clientes.Cliente_Id where Fecha_Transaccion between
+'2023-10-01' and '2023-10-31'
+
+--Mostrar el totalo de las transaccion realizadas por cada cliente agrupados por el nombre del cliente 
+select Nombre,SUM(Monto) from Transacciones join Cuentas_Bancarias on Transacciones.Cuenta_Id=Cuentas_Bancarias.Numero_Cuenta join Clientes on Cuentas_Bancarias.Cliente_Id =Clientes.Cliente_Id
+GROUP BY Nombre
